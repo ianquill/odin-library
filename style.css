@@ -1,0 +1,33 @@
+body {
+    background-color: rgb(204, 155, 95);
+}
+
+.main-container {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 5px;
+}
+
+.pop-up {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+
+    width: 300px;
+    height: 300px;
+    z-index: 2;
+    background-color: white;
+    border-radius: 10px;
+}

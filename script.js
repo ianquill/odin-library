@@ -29,16 +29,63 @@ console.table(myLibrary);
 
 // for each loop with a for in loop within it
 
-const body = document.querySelector("body");
+const mainContainer = document.querySelector(".main-container");
 
-myLibrary.forEach((Book) => {
-    const div = document.createElement('div');
-    // div.textContent = Book.info();
-    for (const key in Book) {
-        const subDiv = document.createElement('div');
-        subDiv.textContent = Book[key];
-        div.appendChild(subDiv);
-    }
+function refreshLibrary() {
+    myLibrary.forEach((Book) => {
+        const div = document.createElement('div');
+        div.classList.add("card");
+        // div.textContent = Book.info();
+        for (const key in Book) {
+            const subDiv = document.createElement('div');
+            subDiv.textContent = Book[key];
+            div.appendChild(subDiv);
+        }
 
-    body.appendChild(div);
-});
+        mainContainer.appendChild(div);
+    });
+}
+
+refreshLibrary();
+
+// BUTTON
+
+const addButton = document.querySelector("button");
+
+addButton.addEventListener('click', () => {
+    const popUp = document.createElement('div');
+    popUp.classList.add("pop-up");
+
+    const titleInput = document.createElement('input');
+    titleInput.id = "title";
+    popUp.appendChild(titleInput);
+
+    const authorInput = document.createElement('input');
+    authorInput.id = "author";
+    popUp.appendChild(authorInput);
+
+    const pagesInput = document.createElement('input');
+    pagesInput.id = "pages";
+    popUp.appendChild(pagesInput);
+
+    const readInput = document.createElement('input');
+    readInput.id = "read";
+    readInput.type = "checkbox";
+    popUp.appendChild(readInput);
+
+    const submitButton = document.createElement('button');
+    submitButton.id = "submit";
+    submitButton.textContent = "Submit";
+    submitButton.addEventListener('click', () => {
+        // submit form?? or get value from all other inputs
+        addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readInput.value);
+        refreshLibrary();
+
+        
+    })
+    popUp.appendChild(submitButton);
+
+
+
+    mainContainer.appendChild(popUp);
+})
