@@ -1,6 +1,7 @@
 body {
-    background-color: rgb(204, 155, 95);
+    background-color: rgb(253, 223, 184);
     font-family: Helvetica, sans-serif;
+    padding: 20px;
 }
 
 .main-container {
@@ -50,4 +51,29 @@ input {
 
 label {
     font-weight: bold;
+}
+
+button {
+    background-color: rgb(255, 255, 255);
+    border: 0;
+    border-radius: 5px;
+}
+
+.addBook {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+
+    border-radius: 50%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 36px;
+    width: 50px;
+    height: 50px;
+}
+
+.deleteButton {
+    align-self: flex-end;
+    border: 1px solid black;
+    border-radius: 50%;
 }

@@ -7,15 +7,11 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
-    // this.info = function() {
-    //     return (title + " by " + author + ", " + pages + " pages, " + read + ".");
-    // }
 }
 
 function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));
 }
-
 
 addBookToLibrary("The Hobbit", "J. R. R. Tolkien", 182, true);
 addBookToLibrary("Nineteen Eighty-Four", "George Orwell", 328, true);
@@ -31,7 +27,23 @@ function refreshLibrary() {
     myLibrary.forEach((Book) => {
         const div = document.createElement('div');
         div.classList.add("card");
-        // div.textContent = Book.info();
+        const index = myLibrary.indexOf(Book)
+        div.setAttribute("data-index", index);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = "X";
+        deleteButton.classList = "deleteButton";
+        // working on removing book from database and DOM
+        deleteButton.addEventListener('click', () => {
+            removeBook(index);
+            clearLibrary();
+            refreshLibrary();
+        });
+
+        div.appendChild(deleteButton);
+
+
+
         for (const key in Book) {
             const subDiv = document.createElement('div');
             subDiv.textContent = Book[key];
@@ -40,6 +52,10 @@ function refreshLibrary() {
 
         mainContainer.appendChild(div);
     });
+}
+
+function removeBook(index) {
+    myLibrary.splice(index, 1);
 }
 
 function clearLibrary() {
@@ -52,7 +68,7 @@ refreshLibrary();
 
 // BUTTON
 
-const addButton = document.querySelector("button");
+const addButton = document.getElementById("addButton");
 
 
 
