@@ -1,9 +1,11 @@
 body {
     background-color: rgb(204, 155, 95);
+    font-family: Helvetica, sans-serif;
 }
 
 .main-container {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -14,6 +16,9 @@ body {
     flex-direction: column;
     padding: 30px;
     gap: 5px;
+    width: 200px;
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 
 .pop-up {
@@ -30,4 +35,19 @@ body {
     z-index: 2;
     background-color: white;
     border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    padding: 20px;
+}
+
+input {
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+label {
+    font-weight: bold;
 }

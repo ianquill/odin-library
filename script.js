@@ -25,10 +25,6 @@ addBookToLibrary("pee book 2: comic edition", "eleanor rigby", 666, true);
 
 console.table(myLibrary);
 
-// function that loops through myLibrary, creating new DIVs and populating them with the data
-
-// for each loop with a for in loop within it
-
 const mainContainer = document.querySelector(".main-container");
 
 function refreshLibrary() {
@@ -46,46 +42,88 @@ function refreshLibrary() {
     });
 }
 
+function clearLibrary() {
+    while (mainContainer.firstChild) {
+        mainContainer.removeChild(mainContainer.firstChild);
+    }
+};
+
 refreshLibrary();
 
 // BUTTON
 
 const addButton = document.querySelector("button");
 
+
+
 addButton.addEventListener('click', () => {
-    const popUp = document.createElement('div');
-    popUp.classList.add("pop-up");
 
-    const titleInput = document.createElement('input');
-    titleInput.id = "title";
-    popUp.appendChild(titleInput);
+    if (document.getElementById("pop-up") === null) {
 
-    const authorInput = document.createElement('input');
-    authorInput.id = "author";
-    popUp.appendChild(authorInput);
+        const popUp = document.createElement('div');
+        popUp.classList.add("pop-up");
+        popUp.id = "pop-up";
+    
+        const titleInput = document.createElement('input');
+        const titleLabel = document.createElement('label');
+        titleLabel.setAttribute("for", "title");
+        titleLabel.textContent = "Title:"
+        titleInput.id = "title";
+        popUp.appendChild(titleLabel);
+        popUp.appendChild(titleInput);
+    
+        const authorInput = document.createElement('input');
+        const authorLabel = document.createElement('label');
+        authorLabel.setAttribute("for", "author");
+        authorLabel.textContent = "Author:";
+        authorInput.id = "author";
+        popUp.appendChild(authorLabel);
+        popUp.appendChild(authorInput);
+    
+        const pagesInput = document.createElement('input');
+        const pagesLabel = document.createElement('label');
+        pagesLabel.setAttribute("for", "pages");
+        pagesLabel.textContent = "Pages:"
+        pagesInput.id = "pages";
+        popUp.appendChild(pagesLabel);
+        popUp.appendChild(pagesInput);
+    
+        const readInput = document.createElement('input');
+        const readLabel = document.createElement('label');
+        readLabel.setAttribute("for", "read");
+        readLabel.textContent = "Have you read it?"
+        readInput.id = "read";
+        readInput.type = "checkbox";
+        popUp.appendChild(readLabel);
+        popUp.appendChild(readInput);
+    
+        const submitButton = document.createElement('button');
+        submitButton.id = "submit";
+        submitButton.textContent = "Submit";
+        submitButton.addEventListener('click', () => {
+            // submit form?? or get value from all other inputs
+            addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readInput.value);
+            clearLibrary();
+            refreshLibrary(); 
+        })
+    
+        popUp.appendChild(submitButton);
 
-    const pagesInput = document.createElement('input');
-    pagesInput.id = "pages";
-    popUp.appendChild(pagesInput);
+        const cancelButton = document.createElement('button');
+        cancelButton.id = "cancel";
+        cancelButton.textContent = "Cancel";
+        cancelButton.addEventListener('click', () => {
+            popUp.remove();
+        })
 
-    const readInput = document.createElement('input');
-    readInput.id = "read";
-    readInput.type = "checkbox";
-    popUp.appendChild(readInput);
+        popUp.appendChild(cancelButton);
 
-    const submitButton = document.createElement('button');
-    submitButton.id = "submit";
-    submitButton.textContent = "Submit";
-    submitButton.addEventListener('click', () => {
-        // submit form?? or get value from all other inputs
-        addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readInput.value);
-        refreshLibrary();
-
-        
-    })
-    popUp.appendChild(submitButton);
+        mainContainer.appendChild(popUp);
+    }
 
 
-
-    mainContainer.appendChild(popUp);
 })
+
+function clearPopUp(element) {
+    popUp.remove();
+}

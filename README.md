@@ -1,13 +1,18 @@
 # TODO
 
-// refreshLibrary - add clear function before it to start with a clean slate every time? as long as it's not a visible transition
-
-
-// add header
-// add button for new book
-    // new book entry card appears over whole page, ignoring other formatting
 // format cards
+    ++ default width
+    // borders used as single line seperators
     // distinguish specific elements
         // bold title
         // 'read' checkbox
+// format buttons
 // localStorage implementation
+// add header
+
+
+# DONE
+
+++ new book popUp - prevent from instantiating more than one
+++ add cancel button to popUp
+
