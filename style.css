@@ -1,7 +1,13 @@
+:root {
+    --button-bg: rgb(94, 94, 253);
+}
+
 body {
     background-color: rgb(253, 223, 184);
     font-family: Helvetica, sans-serif;
     padding: 20px;
+    margin-left: 120px;
+    margin-right: 120px;
 }
 
 .main-container {
@@ -20,6 +26,9 @@ body {
     width: 200px;
     flex-shrink: 0;
     flex-grow: 0;
+
+
+    border: 1px dotted black;
 }
 
 .pop-up {
@@ -40,8 +49,11 @@ body {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    justify-content: space-between;
 
-    padding: 20px;
+    padding: 80px;
+
+    border: 2px solid black;
 }
 
 input {
@@ -54,12 +66,15 @@ label {
 }
 
 button {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 246, 246);
     border: 0;
     border-radius: 5px;
 }
 
 .addBook {
+    background-color: var(--button-bg);
+    color: white;
+
     position: fixed;
     bottom: 10px;
     right: 10px;
@@ -72,8 +87,51 @@ button {
     height: 50px;
 }
 
+.addBook::after {
+    content: "+";
+    color: white;
+    font-size: 68px;
+    position: fixed;
+    bottom: 0px;
+    right: 13px;
+}
+
+.addBook:hover {
+    background-color: rgba(94, 94, 253, 0.8);
+}
+
 .deleteButton {
     align-self: flex-end;
     border: 1px solid black;
     border-radius: 50%;
+    /* color: white; */
+    /* border-color: white;
+    background-color: rgb(209, 62, 62); */
 }
+
+.deleteButton:hover {
+    color: white;
+    border-color: white;
+    background-color: rgba(209, 62, 62, 0.8);
+}
+
+.title {
+    font-weight: bold;
+}
+
+.isRead {
+    align-self: flex-start;
+    margin: 0;
+}
+
+.popUpButton {
+    padding: 10px;
+    background-color: var(--button-bg);
+    color: white;
+}
+
+.popUpButton:hover {
+    background-color: rgba(94, 94, 253, 0.8);
+}
+
+

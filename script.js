@@ -49,6 +49,9 @@ function refreshLibrary() {
         const pagesDiv = document.createElement('div');
         const isRead = document.createElement('input');
         const isReadLabel = document.createElement('label');
+
+        titleDiv.classList.add("title");
+        isRead.classList.add("isRead");
         isReadLabel.setAttribute("for", "isRead");
         isRead.setAttribute("type", "checkbox");
         if (Book.read) {
@@ -131,12 +134,14 @@ function createPopup () {
         readLabel.setAttribute("for", "read");
         readLabel.textContent = "Have you read it?"
         readInput.id = "read";
+        readInput.classList.add("isRead");
         readInput.type = "checkbox";
         popUp.appendChild(readLabel);
         popUp.appendChild(readInput);
     
         const submitButton = document.createElement('button');
         submitButton.id = "submit";
+        submitButton.classList.add("popUpButton");
         submitButton.textContent = "Submit";
         submitButton.addEventListener('click', () => {
             addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readInput.checked);
@@ -148,6 +153,7 @@ function createPopup () {
     
         const cancelButton = document.createElement('button');
         cancelButton.id = "cancel";
+        cancelButton.classList.add("popUpButton");
         cancelButton.textContent = "Cancel";
         cancelButton.addEventListener('click', () => {
             popUp.remove();
