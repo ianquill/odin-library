@@ -1,6 +1,11 @@
 // DATA
 
 let myLibrary = [];
+const mainContainer = document.querySelector(".main-container");
+
+function addBookToLibrary(title, author, pages, read) {
+    myLibrary.push(new Book(title, author, pages, read));
+}
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -9,19 +14,13 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-function addBookToLibrary(title, author, pages, read) {
-    myLibrary.push(new Book(title, author, pages, read));
-}
-
+// TEMP FOR TESTING *** 
 addBookToLibrary("The Hobbit", "J. R. R. Tolkien", 182, true);
 addBookToLibrary("Nineteen Eighty-Four", "George Orwell", 328, true);
 addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, false);
 addBookToLibrary("poop book", "eleanor bray", 182, false);
 addBookToLibrary("pee book 2: comic edition", "eleanor rigby", 666, true);
-
-console.table(myLibrary);
-
-const mainContainer = document.querySelector(".main-container");
+// TEMP FOR TESTING ***
 
 function refreshLibrary() {
     myLibrary.forEach((Book) => {
@@ -33,26 +32,52 @@ function refreshLibrary() {
         const deleteButton = document.createElement('button');
         deleteButton.textContent = "X";
         deleteButton.classList = "deleteButton";
-        // working on removing book from database and DOM
         deleteButton.addEventListener('click', () => {
             removeBook(index);
             clearLibrary();
             refreshLibrary();
         });
 
-        div.appendChild(deleteButton);
+        // for (const key in Book) {
+        //     const subDiv = document.createElement('div');
+        //     subDiv.textContent = Book[key];
+        //     div.appendChild(subDiv);
+        // }
 
-
-
-        for (const key in Book) {
-            const subDiv = document.createElement('div');
-            subDiv.textContent = Book[key];
-            div.appendChild(subDiv);
+        const titleDiv = document.createElement('div');
+        const authorDiv = document.createElement('div');
+        const pagesDiv = document.createElement('div');
+        const isRead = document.createElement('input');
+        const isReadLabel = document.createElement('label');
+        isReadLabel.setAttribute("for", "isRead");
+        isRead.setAttribute("type", "checkbox");
+        if (Book.read) {
+            isRead.checked = true;
+            console.log(Book.read);
+        } else {
+            isRead.checked = false;
         }
+        
+        isRead.id = "isRead";
+        
+        titleDiv.textContent = Book.title;
+        authorDiv.textContent = Book.author;
+        pagesDiv.textContent = Book.pages;
+        isReadLabel.textContent = "Have you read this?";
 
+        div.appendChild(titleDiv);
+        div.appendChild(authorDiv);
+        div.appendChild(pagesDiv);
+        div.appendChild(isReadLabel);
+        div.appendChild(isRead);
+        
+        
+        div.appendChild(deleteButton);
         mainContainer.appendChild(div);
     });
 }
+
+
 
 function removeBook(index) {
     myLibrary.splice(index, 1);
@@ -70,12 +95,9 @@ refreshLibrary();
 
 const addButton = document.getElementById("addButton");
 
-
-
-addButton.addEventListener('click', () => {
-
+function createPopup () {
     if (document.getElementById("pop-up") === null) {
-
+    
         const popUp = document.createElement('div');
         popUp.classList.add("pop-up");
         popUp.id = "pop-up";
@@ -117,27 +139,29 @@ addButton.addEventListener('click', () => {
         submitButton.id = "submit";
         submitButton.textContent = "Submit";
         submitButton.addEventListener('click', () => {
-            // submit form?? or get value from all other inputs
-            addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readInput.value);
+            addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readInput.checked);
             clearLibrary();
             refreshLibrary(); 
         })
     
         popUp.appendChild(submitButton);
-
+    
         const cancelButton = document.createElement('button');
         cancelButton.id = "cancel";
         cancelButton.textContent = "Cancel";
         cancelButton.addEventListener('click', () => {
             popUp.remove();
         })
-
+    
         popUp.appendChild(cancelButton);
-
+    
         mainContainer.appendChild(popUp);
     }
 
+}
 
+addButton.addEventListener('click', () => {
+    createPopup();
 })
 
 function clearPopUp(element) {

@@ -5,7 +5,6 @@
     // borders used as single line seperators  
     // distinguish specific elements  
         // bold title  
-        // 'read' checkbox  
 // format buttons  
 // localStorage implementation  
 // add header  
