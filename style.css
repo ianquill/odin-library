@@ -1,9 +1,11 @@
 :root {
     --button-bg: rgb(94, 94, 253);
+    --main-static-bg: rgb(253, 223, 184);
 }
 
 body {
-    background-color: rgb(253, 223, 184);
+    background-color: var(--main-static-bg);
+    height: 100%;
     font-family: Helvetica, sans-serif;
     padding: 20px;
     margin-left: 120px;
@@ -53,7 +55,9 @@ body {
 
     padding: 80px;
 
-    border: 2px solid black;
+    /* border: 2px solid black; */
+
+    box-shadow: 0px 0px 10px black;
 }
 
 input {

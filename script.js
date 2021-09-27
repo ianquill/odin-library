@@ -38,12 +38,6 @@ function refreshLibrary() {
             refreshLibrary();
         });
 
-        // for (const key in Book) {
-        //     const subDiv = document.createElement('div');
-        //     subDiv.textContent = Book[key];
-        //     div.appendChild(subDiv);
-        // }
-
         const titleDiv = document.createElement('div');
         const authorDiv = document.createElement('div');
         const pagesDiv = document.createElement('div');
@@ -64,8 +58,8 @@ function refreshLibrary() {
         isRead.id = "isRead";
         
         titleDiv.textContent = Book.title;
-        authorDiv.textContent = Book.author;
-        pagesDiv.textContent = Book.pages;
+        authorDiv.textContent = "by " + Book.author;
+        pagesDiv.textContent = Book.pages + " pages";
         isReadLabel.textContent = "Have you read this?";
 
         div.appendChild(titleDiv);
@@ -73,8 +67,6 @@ function refreshLibrary() {
         div.appendChild(pagesDiv);
         div.appendChild(isReadLabel);
         div.appendChild(isRead);
-        
-        
         div.appendChild(deleteButton);
         mainContainer.appendChild(div);
     });
@@ -110,6 +102,7 @@ function createPopup () {
         titleLabel.setAttribute("for", "title");
         titleLabel.textContent = "Title:"
         titleInput.id = "title";
+        titleInput.setAttribute("minlength", "1");
         popUp.appendChild(titleLabel);
         popUp.appendChild(titleInput);
     
