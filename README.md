@@ -1,5 +1,7 @@
 # TODO
 
+// position remove book button in an aboslute corner
+
 https://odin-library.vercel.app/#  
 inspiring for button interaction / drop shadow use  
 
@@ -25,15 +27,14 @@ how did they do the alert on the entry box?
 
 # DONE
 
+
+
+
+---
+
 // added "by" and "pages" 
 // fill out popup page  
 // dropshadow popup  
-
-
-
-
-
-
 
 ---
 

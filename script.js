@@ -3,8 +3,32 @@
 let myLibrary = [];
 const mainContainer = document.querySelector(".main-container");
 
+function populateStorage() {
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+    console.log("populated storage");
+    console.log(localStorage.getItem("myLibrary"));
+}
+
+function getStorage() {
+    let jsonString = localStorage.getItem("myLibrary");
+    let retrievedObject = JSON.parse(jsonString);
+    myLibrary = retrievedObject;
+}
+
+function clearStorage() {
+    localStorage.clear();
+}
+
+if (!localStorage.getItem("myLibrary")) {
+    populateStorage();
+} else {
+    getStorage();
+}
+
 function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));
+    clearStorage();
+    populateStorage();
 }
 
 function Book(title, author, pages, read) {
@@ -13,14 +37,6 @@ function Book(title, author, pages, read) {
     this.pages = pages;
     this.read = read;
 }
-
-// TEMP FOR TESTING *** 
-addBookToLibrary("The Hobbit", "J. R. R. Tolkien", 182, true);
-addBookToLibrary("Nineteen Eighty-Four", "George Orwell", 328, true);
-addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, false);
-addBookToLibrary("poop book", "eleanor bray", 182, false);
-addBookToLibrary("pee book 2: comic edition", "eleanor rigby", 666, true);
-// TEMP FOR TESTING ***
 
 function refreshLibrary() {
     myLibrary.forEach((Book) => {
@@ -36,6 +52,8 @@ function refreshLibrary() {
             removeBook(index);
             clearLibrary();
             refreshLibrary();
+            clearStorage();
+            populateStorage();
         });
 
         const titleDiv = document.createElement('div');
@@ -56,6 +74,11 @@ function refreshLibrary() {
         }
         
         isRead.id = "isRead";
+        isRead.onchange = function(){
+            Book.read = isRead.checked;
+            clearStorage();
+            populateStorage();
+        }
         
         titleDiv.textContent = Book.title;
         authorDiv.textContent = "by " + Book.author;
