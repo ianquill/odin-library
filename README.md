@@ -20,13 +20,13 @@ how did they do the alert on the entry box?
     // distinguish specific elements    
         // bold title    
 // format buttons    
-// localStorage implementation    
 // add header  
 // add footer  
 
 
 # DONE
 
+// localStorage implementation    
 
 
 
