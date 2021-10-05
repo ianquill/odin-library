@@ -1,5 +1,8 @@
 # TODO
 
+// addBook button doesn't land in correct spot on different browsers / platforms
+    // possibly a position: fixed bug?
+
 // popup appears at top of page, should be center of viewport
 
 // animate popup  
