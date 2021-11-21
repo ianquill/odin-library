@@ -67,6 +67,10 @@ input {
     flex-shrink: 0;
 }
 
+input:invalid {
+    border: 2px solid red;
+}
+
 label {
     font-weight: bold;
 }

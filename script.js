@@ -1,5 +1,3 @@
-// DATA
-
 let myLibrary = [];
 const mainContainer = document.querySelector(".main-container");
 
@@ -39,13 +37,6 @@ class Book {
         this.read = read;
     }
 }
-
-// function Book(title, author, pages, read) {
-//     this.title = title;
-//     this.author = author;
-//     this.pages = pages;
-//     this.read = read;
-// }
 
 function refreshLibrary() {
     myLibrary.forEach((Book) => {
@@ -125,7 +116,7 @@ const addButton = document.getElementById("addButton");
 function createPopup () {
     if (document.getElementById("pop-up") === null) {
     
-        const popUp = document.createElement('div');
+        const popUp = document.createElement('form');
         popUp.classList.add("pop-up");
         popUp.id = "pop-up";
     
@@ -134,15 +125,27 @@ function createPopup () {
         titleLabel.setAttribute("for", "title");
         titleLabel.textContent = "Title:"
         titleInput.id = "title";
-        titleInput.setAttribute("minlength", "1");
+        // titleInput.setAttribute("minlength", "1");
+        titleInput.required = true;
         popUp.appendChild(titleLabel);
         popUp.appendChild(titleInput);
-    
+
+        // not sure if I'm going to need this 
+        // titleInput.min = 0;
+        titleInput.addEventListener('input', () => {
+            if (!titleInput.checkValidity()) {
+                titleInput.setCustomValidity('Please include a title of at least one (1) character in length.');
+            } else {
+                titleInput.setCustomValidity('');
+            }
+        })
+
         const authorInput = document.createElement('input');
         const authorLabel = document.createElement('label');
         authorLabel.setAttribute("for", "author");
         authorLabel.textContent = "Author:";
         authorInput.id = "author";
+        authorInput.required = true;
         popUp.appendChild(authorLabel);
         popUp.appendChild(authorInput);
     
@@ -151,6 +154,7 @@ function createPopup () {
         pagesLabel.setAttribute("for", "pages");
         pagesLabel.textContent = "Pages:"
         pagesInput.id = "pages";
+        pagesInput.required = true;
         popUp.appendChild(pagesLabel);
         popUp.appendChild(pagesInput);
     
@@ -168,11 +172,15 @@ function createPopup () {
         submitButton.id = "submit";
         submitButton.classList.add("popUpButton");
         submitButton.textContent = "Submit";
+
+        // make this check all of the form
         submitButton.addEventListener('click', () => {
-            addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readInput.checked);
-            clearLibrary();
-            refreshLibrary(); 
-        })
+            if (titleInput.checkValidity()){
+                addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readInput.checked);
+                clearLibrary();
+                refreshLibrary(); 
+            }
+        });
     
         popUp.appendChild(submitButton);
     
