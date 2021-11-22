@@ -1,3 +1,5 @@
+import './style.css';
+
 let myLibrary = [];
 const mainContainer = document.querySelector(".main-container");
 

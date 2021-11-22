@@ -1,5 +1,13 @@
 # TODO
 
+REFACTOR
+
+[ ]- Separate modules into new files.
+    [ ]- Add webpack
+[ ]- Make function to check all form conditions (make an array of forms and do a forEach on it)
+
+--- old notes ---
+
 // addBook button doesn't land in correct spot on different browsers / platforms
     // possibly a position: fixed bug?
 
