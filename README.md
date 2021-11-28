@@ -3,7 +3,7 @@
 REFACTOR
 
 [ ]- Separate modules into new files.
-    [ ]- Add webpack
+    [x]- Add webpack
 [ ]- Make function to check all form conditions (make an array of forms and do a forEach on it)
 
 --- old notes ---
