@@ -1,4 +1,4 @@
-import { myLibrary } from './library';
+import { myLibrary, setMyLibrary } from './library';
 // import getter + setter instead? might need to
 
 function populateStorage(library) {
@@ -10,7 +10,7 @@ function populateStorage(library) {
 function getStorage() {
     let jsonString = localStorage.getItem("myLibrary");
     let retrievedObject = JSON.parse(jsonString);
-    myLibrary = retrievedObject;
+    setMyLibrary(retrievedObject);
     // disconnected here; should set library.myLibrary
 }
     

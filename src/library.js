@@ -6,19 +6,14 @@ import {
   checkStorage,
 } from './storageController';
 
-const myLibrary = {
-    log: [],
-
-    // here
-    set add()
-};
+let myLibrary = [];
 
 function getMyLibrary() {
     return myLibrary;
 }
 
-function setMyLibrary() {
-
+function setMyLibrary(newLibrary) {
+    myLibrary = newLibrary;
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -33,7 +28,8 @@ function removeBook(index) {
 
 export { 
     myLibrary, 
-    getMyLibrary, 
+    getMyLibrary,
+    setMyLibrary, 
     addBookToLibrary,
     removeBook,
 }
