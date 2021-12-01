@@ -34,8 +34,8 @@ function refreshLibrary() {
       populateStorage(myLibrary);
     });
 
-    const titleDiv = document.createElement("div");
     const authorDiv = document.createElement("div");
+    const titleDiv = document.createElement("div");
     const pagesDiv = document.createElement("div");
     const isRead = document.createElement("input");
     const isReadLabel = document.createElement("label");
@@ -97,18 +97,14 @@ function createPopup() {
     titleLabel.setAttribute("for", "title");
     titleLabel.textContent = "Title:";
     titleInput.id = "title";
-    // titleInput.setAttribute("minlength", "1");
     titleInput.required = true;
     popUp.appendChild(titleLabel);
     popUp.appendChild(titleInput);
 
-    // not sure if I'm going to need this
-    // titleInput.min = 0;
+    // currently just checks input
     titleInput.addEventListener("input", () => {
       if (!titleInput.checkValidity()) {
-        titleInput.setCustomValidity(
-          "Please include a title of at least one (1) character in length."
-        );
+        titleInput.setCustomValidity("Please include a title.");
       } else {
         titleInput.setCustomValidity("");
       }
@@ -123,14 +119,33 @@ function createPopup() {
     popUp.appendChild(authorLabel);
     popUp.appendChild(authorInput);
 
+    authorInput.addEventListener("input", () => {
+      if (!authorInput.checkValidity()) {
+        authorInput.setCustomValidity("Please include an author.");
+      } else {
+        authorInput.setCustomValidity("");
+      }
+    });
+
     const pagesInput = document.createElement("input");
     const pagesLabel = document.createElement("label");
     pagesLabel.setAttribute("for", "pages");
+    pagesLabel.type = "number";
     pagesLabel.textContent = "Pages:";
     pagesInput.id = "pages";
     pagesInput.required = true;
     popUp.appendChild(pagesLabel);
     popUp.appendChild(pagesInput);
+
+    pagesInput.addEventListener("input", () => {
+      if (!pagesInput.checkValidity()) {
+        pagesInput.setCustomValidity("Please include a page count.");
+      } else if (pagesInput.validity.typeMismatch) {
+        pagesInput.setCustomValidity("Please only enter numbers.");
+      } else {
+        pagesInput.setCustomValidity("");
+      }
+    });
 
     const readInput = document.createElement("input");
     const readLabel = document.createElement("label");
@@ -147,9 +162,13 @@ function createPopup() {
     submitButton.classList.add("popUpButton");
     submitButton.textContent = "Submit";
 
-    // make this check all of the form
+    // check validity of entire form, add book
     submitButton.addEventListener("click", () => {
-      if (titleInput.checkValidity()) {
+      if (
+        titleInput.checkValidity() &&
+        authorInput.checkValidity() &&
+        pagesInput.checkValidity()
+      ) {
         addBookToLibrary(
           titleInput.value,
           authorInput.value,
